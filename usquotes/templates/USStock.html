@@ -1,0 +1,32 @@
+{%extends 'base.html'%}
+{%block content%}
+
+
+<h1>USStock</h1>
+<br/>
+<br/>
+
+{% if ticker %}
+	{{ ticker }}
+{% endif %}
+
+
+
+{% if api %}
+	{% if api == "Error" %}
+		There is a problem with your ticker symbol, please try again...
+	{% else %}
+	<h2>{{ api.companyName }}</h2><br/>
+		OpenPrice: ${{ api.open }}<br/>
+		PreviousClose: ${{ api.previousClose }}<br/>
+		Price: ${{ api.latestPrice }}<br/>
+		HighToday: T{{ api.highTime }}<br/>
+		HighToday: ${{ api.high }}<br/>
+		LowToday: ${{ api.low }}<br/>
+		Volumne: {{ api.volume }}<br/>
+		52WH: ${{ api.week52High }}<br/>
+		52WL: ${{ api.week52Low }}<br/>
+		MarketCap: ${{ api.marketCap }}<br/>
+	{% endif %}
+{% endif %}
+{% endblock %}
